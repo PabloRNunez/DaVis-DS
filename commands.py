@@ -28,39 +28,39 @@ def davis_data():
         if tweet.split(" ")[tweet.split(" ").index("data:") + 2] == "armors":
             if tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "minimum":
                 df = pd.read_excel('excels/ds_armors_min.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
             elif tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "maximum":
                 df = pd.read_excel('excels/ds_armors_max.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
         elif tweet.split(" ")[tweet.split(" ").index("data:") + 2] == "weapons":
             if tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "minimum":
                 df = pd.read_excel('excels/ds_weapons_min.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
             elif tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "maximum":
                 df = pd.read_excel('excels/ds_weapons_max.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
         elif tweet.split(" ")[tweet.split(" ").index("data:") + 2] == "shields":
             if tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "minimum":
                 df = pd.read_excel('excels/ds_shields_min.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
             elif tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "maximum":
                 df = pd.read_excel('excels/ds_shields_max.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
     elif tweet.split(" ")[tweet.split(" ").index("data:") + 1] == "DS3":
         if tweet.split(" ")[tweet.split(" ").index("data:") + 2] == "weapons":
             if tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "minimum":
                 df = pd.read_excel('excels/ds3_weapons_min.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
             elif tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "maximum":
                 df = pd.read_excel('excels/ds3_weapons_max.xlsx')
-                df.to_csv("df.csv")
+                df.to_csv("excels/df.csv")
 
     return df
 
@@ -75,24 +75,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("and") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
@@ -100,8 +100,8 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
             elif "or" in tweet.split(" "):
                 if tweet.split(" ")[tweet.split(" ").index("or") + 1] in ft_vars:
@@ -110,24 +110,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("or") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
@@ -135,15 +135,15 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
                     
             else: 
                 df_f = df.loc[
                     (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3]))
                 ]
-                df_f.to_csv("df_f.csv")
-                df_f = pd.read_csv("df_f.csv")
+                df_f.to_csv("excels/df_f.csv")
+                df_f = pd.read_csv("excels/df_f.csv")
 
         elif tweet.split(" ")[tweet.split(" ").index("filter:") + 2] == "until":
             if "and" in tweet.split(" "):
@@ -153,24 +153,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("filter:") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("and") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
@@ -178,8 +178,8 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
             elif "or" in tweet.split(" "):
                 if tweet.split(" ")[tweet.split(" ").index("or") + 1] in ft_vars:
@@ -188,24 +188,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("or") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
@@ -213,15 +213,15 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
                 
             else:  
                 df_f = df.loc[
                     (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3]))
                 ]
-                df_f.to_csv("df_f.csv")
-                df_f = pd.read_csv("df_f.csv")
+                df_f.to_csv("excels/df_f.csv")
+                df_f = pd.read_csv("excels/df_f.csv")
 
         elif tweet.split(" ")[tweet.split(" ").index("filter:") + 2] == "only":
             if "and" in tweet.split(" "):
@@ -231,24 +231,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("and") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
@@ -256,8 +256,8 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
             elif "or" in tweet.split(" "):
                 if tweet.split(" ")[tweet.split(" ").index("or") + 1] in ft_vars:
@@ -266,24 +266,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("or") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
@@ -291,15 +291,15 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
                 
             else:  
                 df_f = df.loc[
                     (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("filter:") + 3]))
                 ]
-                df_f.to_csv("df_f.csv")
-                df_f = pd.read_csv("df_f.csv")
+                df_f.to_csv("excels/df_f.csv")
+                df_f = pd.read_csv("excels/df_f.csv")
 
     elif tweet.split(" ")[tweet.split(" ").index("filter:") + 1] in fl_vars:
         if tweet.split(" ")[tweet.split(" ").index("filter:") + 2] == "only":
@@ -310,24 +310,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("and") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("and") + 2] == "only":
@@ -335,8 +335,8 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) & 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("and") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("and") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
             elif "or" in tweet.split(" "):
                 if tweet.split(" ")[tweet.split(" ").index("or") + 1] in ft_vars:
@@ -345,24 +345,24 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] >= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "until":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] <= int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                     elif tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
                         df_f = df.loc[
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == int(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
 
                 elif tweet.split(" ")[tweet.split(" ").index("or") + 1] in fl_vars:
                     if tweet.split(" ")[tweet.split(" ").index("or") + 2] == "only":
@@ -370,21 +370,21 @@ def davis_filter(df):
                             (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3])) | 
                             (df[str(tweet.split(" ")[tweet.split(" ").index("or") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("or") + 3]))
                         ]
-                        df_f.to_csv("df_f.csv")
-                        df_f = pd.read_csv("df_f.csv")
+                        df_f.to_csv("excels/df_f.csv")
+                        df_f = pd.read_csv("excels/df_f.csv")
                 
             else: 
                 df_f = df.loc[
                     (df[str(tweet.split(" ")[tweet.split(" ").index("filter:") + 1])] == str(tweet.split(" ")[tweet.split(" ").index("filter:") + 3]))
                 ]
-                df_f.to_csv("df_f.csv")
-                df_f = pd.read_csv("df_f.csv")
+                df_f.to_csv("excels/df_f.csv")
+                df_f = pd.read_csv("excels/df_f.csv")
 
     return df_f
 
 
 def davis_plot_f():
-    df_f = pd.read_csv("df_f.csv")
+    df_f = pd.read_csv("excels/df_f.csv")
     if "color:" in tweet.split(" "):
         if tweet.split(" ")[tweet.split(" ").index("color:") + 1] in cod_vars:
             plt.figure(figsize = (14, 8))
@@ -497,7 +497,7 @@ def davis_plot_nf():
 
 
 def davis_label_f():
-    df_f = pd.read_csv("df_f.csv")
+    df_f = pd.read_csv("excels/df_f.csv")
     texts = [plt.text(df_f[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 1])][i], 
         df_f[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 2])][i], 
         df_f[str(tweet.split(' ')[tweet.split(' ').index('label:') + 1])][i], ha='center', 
@@ -513,3 +513,83 @@ def davis_label_nf():
         va='center') for i in range(len(df[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 1])]))]
     
     adjust_text(texts)
+
+
+
+## - Section made to test the functions
+
+# tweet = str(input("[*] Shell>> "))
+
+# try:
+#     if "data:" in tweet.split(" "):
+#         try:
+#             davis_data()
+#             df = pd.read_csv("excels/df.csv")
+
+#         except NameError:
+#             response = variables.err_response_data
+
+#         if "plot:" in tweet.split(" "):
+#             if "filter:" in tweet.split(" "):
+#                 try:
+#                     davis_filter(df)
+#                     davis_plot_f()
+
+#                 except KeyError:
+#                     response = variables.err_response_filter
+#                     print(variables.err_response + response)
+
+#                 except UnboundLocalError:
+#                     response = variables.err_response_filter
+#                     print(variables.err_response + response)
+                
+#                 except ValueError:
+#                     response = variables.err_response_vars
+#                     print(variables.err_response + response)
+
+#                 if "label:" in tweet.split(" "):
+#                     try:
+#                         davis_label_f()
+#                         print(variables.success_response)
+#                         plt.show()
+
+#                     except KeyError:
+#                         response = variables.err_response_label
+#                         print(variables.err_response + response)
+
+#                 else:
+#                     plt.show()
+#                     print(variables.success_response)
+
+#             else:
+#                 try:
+#                     davis_plot_nf()
+                
+#                 except ValueError:
+#                     response = variables.err_response_vars
+#                     print(variables.err_response + response)
+
+#                 if "label:" in tweet.split(" "):
+#                     try:
+#                         davis_label_nf()
+#                         print(variables.success_response)
+#                         plt.show()
+
+#                     except KeyError:
+#                         response = variables.err_response_label
+#                         print(variables.err_response + response)
+
+#                 else:
+#                     plt.show()
+#                     print(variables.success_response)
+
+#         else:
+#             response = variables.err_response_command
+#             print(variables.err_response + response)
+
+#     else:
+#         response = variables.err_response_command
+#         print(variables.err_response + response)
+
+# except NameError:
+#     print(variables.err_response + response)
