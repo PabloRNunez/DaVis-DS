@@ -1,4 +1,5 @@
 credentials.py
 result_pics/plot.jpg
-df.csv
+excels/df.csv
+excels/df_f.csv
 tests/
