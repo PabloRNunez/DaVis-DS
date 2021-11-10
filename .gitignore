@@ -3,3 +3,4 @@ result_pics/plot.jpg
 excels/df.csv
 excels/df_f.csv
 tests/
+__pycache__/
