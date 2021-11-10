@@ -23,7 +23,7 @@ ds1_d = variables.ds1_d
 ds3_w_d = variables.ds3_w_d
 
 
-def davis_data():
+def davis_data(tweet):
     if tweet.split(" ")[tweet.split(" ").index("data:") + 1] == "DS1":
         if tweet.split(" ")[tweet.split(" ").index("data:") + 2] == "armors":
             if tweet.split(" ")[tweet.split(" ").index("data:") + 3] == "minimum":
@@ -65,7 +65,7 @@ def davis_data():
     return df
 
 
-def davis_filter(df):
+def davis_filter(tweet, df):
     if tweet.split(" ")[tweet.split(" ").index("filter:") + 1] in ft_vars:
         if tweet.split(" ")[tweet.split(" ").index("filter:") + 2] == "since":
             if "and" in tweet.split(" "):
@@ -383,7 +383,7 @@ def davis_filter(df):
     return df_f
 
 
-def davis_plot_f():
+def davis_plot_f(tweet):
     df_f = pd.read_csv("excels/df_f.csv")
     if "color:" in tweet.split(" "):
         if tweet.split(" ")[tweet.split(" ").index("color:") + 1] in cod_vars:
@@ -440,7 +440,7 @@ def davis_plot_f():
         plt.ylabel(str(ds1_d[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 2])]), fontsize = 18)
 
 
-def davis_plot_nf():
+def davis_plot_nf(tweet, df):
     if "color:" in tweet.split(" "):
         if tweet.split(" ")[tweet.split(" ").index("color:") + 1] in cod_vars:
             plt.figure(figsize = (14, 8))
@@ -496,7 +496,7 @@ def davis_plot_nf():
         plt.ylabel(str(ds1_d[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 2])]), fontsize = 18)
 
 
-def davis_label_f():
+def davis_label_f(tweet):
     df_f = pd.read_csv("excels/df_f.csv")
     texts = [plt.text(df_f[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 1])][i], 
         df_f[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 2])][i], 
@@ -506,7 +506,7 @@ def davis_label_f():
     adjust_text(texts)
 
 
-def davis_label_nf():
+def davis_label_nf(tweet, df):
     texts = [plt.text(df[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 1])][i], 
         df[str(tweet.split(' ')[tweet.split(' ').index('plot:') + 2])][i], 
         df[str(tweet.split(' ')[tweet.split(' ').index('label:') + 1])][i], ha='center', 
@@ -523,7 +523,7 @@ def davis_label_nf():
 # try:
 #     if "data:" in tweet.split(" "):
 #         try:
-#             davis_data()
+#             davis_data(tweet)
 #             df = pd.read_csv("excels/df.csv")
 
 #         except NameError:
@@ -532,8 +532,8 @@ def davis_label_nf():
 #         if "plot:" in tweet.split(" "):
 #             if "filter:" in tweet.split(" "):
 #                 try:
-#                     davis_filter(df)
-#                     davis_plot_f()
+#                     davis_filter(tweet, df)
+#                     davis_plot_f(tweet)
 
 #                 except KeyError:
 #                     response = variables.err_response_filter
@@ -549,7 +549,7 @@ def davis_label_nf():
 
 #                 if "label:" in tweet.split(" "):
 #                     try:
-#                         davis_label_f()
+#                         davis_label_f(tweet)
 #                         print(variables.success_response)
 #                         plt.show()
 
@@ -563,7 +563,7 @@ def davis_label_nf():
 
 #             else:
 #                 try:
-#                     davis_plot_nf()
+#                     davis_plot_nf(tweet, df)
                 
 #                 except ValueError:
 #                     response = variables.err_response_vars
@@ -571,7 +571,7 @@ def davis_label_nf():
 
 #                 if "label:" in tweet.split(" "):
 #                     try:
-#                         davis_label_nf()
+#                         davis_label_nf(tweet, df)
 #                         print(variables.success_response)
 #                         plt.show()
 
