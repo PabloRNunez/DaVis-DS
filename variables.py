@@ -1,13 +1,3 @@
-import pandas as pd
-
-ds_a_min = pd.read_excel('excels/ds_armors_min.xlsx')
-ds_a_max = pd.read_excel('excels/ds_armors_max.xlsx')
-ds_a_min = pd.read_excel('excels/ds_weapons_min.xlsx')
-ds_a_max = pd.read_excel('excels/ds_weapons_max.xlsx')
-ds_a_min = pd.read_excel('excels/ds_shields_min.xlsx')
-ds_a_max = pd.read_excel('excels/ds_shields_max.xlsx')
-
-
 gen_vars = [
     'set', 'name', 'level', 'position', 'poise', 'weight', 
     'phy_reduction', 'mag_reduction', 'fir_reduction', 'lig_reduction',
@@ -134,7 +124,9 @@ command_list = ["data:", "filter:", "plot:", "color:", "label:"]
 filter_list = ["since", "until", "only"]
 filter_combine = ["and", "or"]
 
+
 success_response = "\n [+] Your plot was successfully completed."
+
 err_response = "\n [-] ERROR: "
 err_response_data = "dataset was not defined correclty."
 err_response_filter = "filters were not defined correclty."

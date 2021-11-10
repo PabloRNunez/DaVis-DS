@@ -26,7 +26,8 @@ print("\n[*] Loading functions, lists and dictionaries...\n")
 
 from commands import davis_data, davis_filter, davis_label_f, davis_label_nf, davis_plot_f, davis_plot_nf
 
-pic_path = str("result_pics/")
+pic_path = credentials.pic_path
+excels_path = credentials.excels_path
 
 gen_vars = variables.gen_vars
 
@@ -63,9 +64,6 @@ def followStream():
 	stream = Stream(auth, listener)
 	stream.filter(track=[credentials.ACCOUNT_NAME])
 
-
-print("\n    [+] DaVis-DS on line and waiting for requests.\n\n")
-
 class StdOutListener(StreamListener):
 	def on_data(self, data):
 		clean_data = json.loads(data)
@@ -97,7 +95,7 @@ def respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic):
         if "data:" in tweet.split(" "):
             try:
                 davis_data(tweet)
-                df = pd.read_csv("excels/df.csv")
+                df = pd.read_csv(excels_path + "df.csv")
 
             except NameError:
                 pic = str(pic_path + 'fail.jpg')
@@ -202,5 +200,5 @@ def postResponse(reply, tweetId, pic):
 
 
 if __name__ == "__main__":
-	print("\n    [*] Waiting for requests...\n")
+	print("\n    [+] DaVis-DS on line and waiting for requests.\n\n")
 	followStream()
