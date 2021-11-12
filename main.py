@@ -1,3 +1,7 @@
+from credentials import davis_logo
+
+print(davis_logo)
+
 print("\n\033[1mEXECUTING DaVis")
 
 
