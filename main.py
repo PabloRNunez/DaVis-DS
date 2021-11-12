@@ -1,8 +1,8 @@
-print("\nExecuting DaVis-DS")
+print("\n\033[1mEXECUTING DaVis")
 
 
 
-print("\n[*] Importing packages...\n")
+print("\n[*]\033[0m Importing packages...\n")
 
 import pandas as pd
 import seaborn as sns
@@ -22,7 +22,7 @@ import variables
 
 
 
-print("\n[*] Loading functions, lists and dictionaries...\n")
+print("\n\033[1m[*]\033[0m Loading functions, lists and dictionaries...\n")
 
 from commands import davis_data, davis_filter, davis_label_f, davis_label_nf, davis_plot_f, davis_plot_nf
 
@@ -45,7 +45,7 @@ ds1_d = variables.ds1_d
 
 
 
-print("\n[*] Initializing Twitter bot...\n")
+print("\n\033[1m[*]\033[0m Initializing Twitter bot...\n")
 auth = tweepy.OAuthHandler(credentials.API_KEY, credentials.API_SECRET)
 auth.set_access_token(credentials.ACCESS_TOKEN, credentials.ACCESS_TOKEN_SECRET)
 api = tweepy.API(auth)
@@ -76,21 +76,22 @@ class StdOutListener(StreamListener):
 			tweet = clean_data['text']
 		tweet_id = clean_data["id"]
         
-		print("\n    [*] Possible request from user @" + tweeted_by + ":\n" + '        "' + tweet + '"\n\n')
+		print("\n    \033[1m[*]\033[0m Possible request from user \033[1m@" + tweeted_by + "\033[0m:\n" + '        "' + tweet + '"\n\n')
 
 		if user_mentions[0]["screen_name"] == credentials.ACCOUNT_NAME or user_mentions[0]["screen_name"] == credentials.ACCOUNT_NAME.lower():
-			print("\n    [+] Detected username @" + credentials.ACCOUNT_NAME + " within the mentions.\n")
+			print("\n        \033[1m[+]\033[0m Detected username \033[1m@" + credentials.ACCOUNT_NAME + "\033[0m within the mentions.\n")
 			respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic_path)
 
 		elif tweeted_by != credentials.ACCOUNT_NAME and credentials.ACCOUNT_NAME in tweet:
-			print("\n    [+] Detected username @" + credentials.ACCOUNT_NAME + " within the mentions.\n")
+			print("\n        \033[1m[+]\033[0m Detected username @\033[1m" + credentials.ACCOUNT_NAME + "\033[0m within the mentions.\n")
 			respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic_path)
             
 	def on_error(self, status):
-		print("\n    [-] ERROR: " + status + "\n\n")
+		print("\n    \033[1;31m[-] ERROR:\033[0m " + status + "\n\n")
 
 
 def respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic):
+    print("\n        \033[1m[*]\033[0m Processing response...")
     while True:
         if "data:" in tweet.split(" "):
             try:
@@ -193,12 +194,12 @@ def respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic):
 
 
 def postResponse(reply, tweetId, pic):
-	print("\n    [*] Sending...\n\n")
+	print("\n        \033[1m[*]\033[0m Sending...\n\n")
 	api, auth = setUpAuth()
 	api.update_with_media(pic, status = reply, in_reply_to_status_id = tweetId, auto_populate_reply_metadata = True)
-	print("\n    [+] Response successfully sent.\n\n")
+	print("\n            \033[1m[+] Response successfully sent.\033[0m\n\n")
 
 
 if __name__ == "__main__":
-	print("\n    [+] DaVis-DS on line and waiting for requests.\n\n")
+	print("\n    \033[1m[+] DaVis on line and waiting for requests.\033[0m\n\n")
 	followStream()
