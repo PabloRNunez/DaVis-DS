@@ -1,13 +1,16 @@
-from credentials import davis_logo
+import os
+os.system("clear")
 
+from credentials import davis_logo
 print(davis_logo)
 
-print("\n\033[1mEXECUTING DaVis")
+print("\n\n\n\033[1m    EXECUTING DaVis")
 
 
 
 print("\n[*]\033[0m Importing packages...\n")
 
+import time
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
@@ -91,7 +94,7 @@ class StdOutListener(StreamListener):
 			respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic_path)
             
 	def on_error(self, status):
-		print("\n    \033[1;31m[-] ERROR:\033[0m " + status + "\n\n")
+		print("\n    \033[1;31m[-] ERROR:\033[0m " + str(status) + "\n\n")
 
 
 def respondToTweet(tweet, tweeted_by, tweeted_at, tweet_id, pic):
@@ -205,5 +208,9 @@ def postResponse(reply, tweetId, pic):
 
 
 if __name__ == "__main__":
-	print("\n    \033[1m[+] DaVis on line and waiting for requests.\033[0m\n\n")
-	followStream()
+    print("\n    \033[1m[+] DaVis on line and waiting for requests.\033[0m\n\n")
+    time.sleep(1)
+    os.system("clear")
+    print(davis_logo)
+    print("\n\n\n    \033[1m[+] DaVis on line and waiting for requests.\033[0m\n\n")
+    followStream()
